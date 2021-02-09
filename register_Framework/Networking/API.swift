@@ -22,15 +22,15 @@ struct API {
         
         struct EndPoint {
             static let appointmentsCatalog = "/catalogs/appointments"
-            static let clergy = "/catalogs/clergy"
+            static let clergyCatalog = "/catalogs/clergy"
         }
         
         static func appointmentsCatalog() -> String {
             return host + version + EndPoint.appointmentsCatalog
         }
         
-        static func clergy() -> String {
-            return host + version + EndPoint.clergy
+        static func clergyCatalog() -> String {
+            return host + version + EndPoint.clergyCatalog
         }
     }
 

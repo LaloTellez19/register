@@ -63,7 +63,7 @@
 		D084365E25D32C9C00655142 /* ErrorEncuentro.swift in Sources */ = {isa = PBXBuildFile; fileRef = D084365D25D32C9C00655142 /* ErrorEncuentro.swift */; };
 		D084366125D32CCC00655142 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D084366025D32CCC00655142 /* BaseRouter.swift */; };
 		D084366425D32DBB00655142 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D084366325D32DBB00655142 /* API.swift */; };
-		D084366825D3309A00655142 /* AppointmentsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D084366725D3309A00655142 /* AppointmentsRouter.swift */; };
+		D084366825D3309A00655142 /* RegisterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D084366725D3309A00655142 /* RegisterRouter.swift */; };
 		D0F4540025D1CE1900B84EAC /* register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0F453FF25D1CE1900B84EAC /* register.storyboard */; };
 		D0F4540525D1D5C200B84EAC /* DatePickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F4540425D1D5C200B84EAC /* DatePickerTextField.swift */; };
 		D0F4540925D1D78100B84EAC /* PickerViewTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F4540825D1D78100B84EAC /* PickerViewTextField.swift */; };
@@ -158,7 +158,7 @@
 		D084365D25D32C9C00655142 /* ErrorEncuentro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorEncuentro.swift; sourceTree = "<group>"; };
 		D084366025D32CCC00655142 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
 		D084366325D32DBB00655142 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		D084366725D3309A00655142 /* AppointmentsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentsRouter.swift; sourceTree = "<group>"; };
+		D084366725D3309A00655142 /* RegisterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRouter.swift; sourceTree = "<group>"; };
 		D0F453FF25D1CE1900B84EAC /* register.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = register.storyboard; sourceTree = "<group>"; };
 		D0F4540425D1D5C200B84EAC /* DatePickerTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerTextField.swift; sourceTree = "<group>"; };
 		D0F4540825D1D78100B84EAC /* PickerViewTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewTextField.swift; sourceTree = "<group>"; };
@@ -384,7 +384,7 @@
 		D084366625D3307D00655142 /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				D084366725D3309A00655142 /* AppointmentsRouter.swift */,
+				D084366725D3309A00655142 /* RegisterRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -669,7 +669,7 @@
 				D084366125D32CCC00655142 /* BaseRouter.swift in Sources */,
 				D030D79225D1CA0400DCF03D /* register_FrameworkPresenter.swift in Sources */,
 				D084365B25D32C7600655142 /* RequestManager.swift in Sources */,
-				D084366825D3309A00655142 /* AppointmentsRouter.swift in Sources */,
+				D084366825D3309A00655142 /* RegisterRouter.swift in Sources */,
 				D0F4541425D1DBF600B84EAC /* LoaderView.swift in Sources */,
 				D0F4540925D1D78100B84EAC /* PickerViewTextField.swift in Sources */,
 				D030D79425D1CA0400DCF03D /* register_FrameworkView.swift in Sources */,

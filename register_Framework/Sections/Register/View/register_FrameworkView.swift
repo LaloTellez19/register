@@ -11,6 +11,20 @@ import UIKit
 import IQKeyboardManagerSwift
 
 class register_FrameworkViewController: UIViewController, register_FrameworkViewProtocol {
+    func showClergy(clergy: Array<ClergyResponse>) {
+        activitesPicker.pickOptions = clergy.map({$0.tag})
+        activitesPicker.initialize()
+    }
+    
+    func showOffice(offices: Array<AppointmentsResponse>) {
+        officePicker.pickOptions = offices.map({$0.tag})
+        officePicker.initialize()
+    }
+    
+    func showError(error: String) {
+        print(error)
+    }
+    
     
     
     //MARK: - IBOutlets
@@ -40,26 +54,16 @@ class register_FrameworkViewController: UIViewController, register_FrameworkView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        initView()
+        initContent()
     }
     
     
     //MARK: - View controls
-    private func initView()
+    private func initContent()
     {
         IQKeyboardManager.shared.enable = true
-        officePicker.pickOptions = ["A","B"]
-        officePicker.closure = {
-            index in
-        }
-        activitesPicker.pickOptions = ["A","B"]
-        activitesPicker.closure = {
-            index in
-        }
-
-
-        officePicker.initialize()
-        activitesPicker.initialize()
+        presenter?.getOffice()
+        presenter?.getClergy()
         birthdayPicker.initialize()
         orditionPicker.initialize()
     }

@@ -8,20 +8,29 @@
 import Foundation
 import Alamofire
 
-struct AppointmentsRequest: Codable
+struct AppointmentsResponse: Codable
 {
-    var id: String
+    var id: Int
     var tag: String
     var description: String
 }
 
-enum AppointmentsRouter: BaseRouter {
+struct ClergyResponse: Codable {
+    var id: Int
+    var tag: String
+    var description: String
+}
 
-    case appointments(request: AppointmentsRequest)
+enum RegisterRouter: BaseRouter {
+
+    case appointments
+    case clergy
     
     var method: HTTPMethod {
         switch self {
         case .appointments:
+            return .get
+        case .clergy:
             return .get
         }
     }
@@ -30,6 +39,8 @@ enum AppointmentsRouter: BaseRouter {
         switch self {
         case .appointments:
             return API.URLProvider.appointmentsCatalog()
+        case .clergy:
+            return API.URLProvider.clergyCatalog()
         }
     }
     
@@ -43,8 +54,10 @@ enum AppointmentsRouter: BaseRouter {
     
     var body: Any? {
         switch self {
-        case .appointments(let request):
-            return request
+        case .appointments:
+            return nil
+        case .clergy:
+            return nil
         }
     }
     
