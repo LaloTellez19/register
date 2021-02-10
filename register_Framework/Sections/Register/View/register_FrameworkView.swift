@@ -29,12 +29,14 @@ class register_FrameworkViewController: UIViewController, register_FrameworkView
     
     //MARK: - IBOutlets
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var firstLastNameTextField: UITextField!
+    @IBOutlet weak var secondLastNameTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var officePicker: PickerViewTextField!
     @IBOutlet weak var birthdayPicker: DatePickerTextField!
     @IBOutlet weak var orditionPicker: DatePickerTextField!
     @IBOutlet weak var activitesPicker: PickerViewTextField!
+    @IBOutlet weak var emailTextField: UITextField!
     
     //MARK: - IBActions
     @IBAction func saveButton(_ sender: Any) {
