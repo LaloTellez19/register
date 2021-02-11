@@ -13,8 +13,11 @@ class ActivitiesCardCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    
     @IBOutlet weak var activitiesNameLabel: UILabel!
     @IBAction func closeButton(_ sender: Any) {
     }
-    
+    static var reuseIdentifier = "ActivitiesCardCollectionViewCell"
+    static let nib = UINib(nibName: ActivitiesCardCollectionViewCell.reuseIdentifier, bundle: Bundle(for: ActivitiesCardCollectionViewCell.self))
 }
