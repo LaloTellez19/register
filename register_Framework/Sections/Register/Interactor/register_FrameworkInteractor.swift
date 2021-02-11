@@ -9,6 +9,13 @@
 import Foundation
 
 class register_FrameworkInteractor: register_FrameworkInteractorInputProtocol {
+    func postRegisterPriest(request: RegisterPriestRequest) {
+        RequestManager.shared.perform(route: RegisterRouter.register(request: request)) {
+            [weak self] (result, _) in
+            self?.presenter?.respondeRegister(result: result)
+        }
+    }
+    
     func requestClergy() {
         RequestManager.shared.perform(route: RegisterRouter.clergy) { [weak self] (result: Result<Array<ClergyResponse>, ErrorEncuentro>, header: Dictionary<String, Any>?) in
             self?.presenter?.respondeClergy(result: result)
@@ -16,7 +23,7 @@ class register_FrameworkInteractor: register_FrameworkInteractorInputProtocol {
     }
     
     func requestOffice() {
-        RequestManager.shared.perform(route: RegisterRouter.appointments) { [weak self] (result: Result<Array<AppointmentsResponse>, ErrorEncuentro>, header: Dictionary<String, Any>?) in
+        RequestManager.shared.perform(route: RegisterRouter.activities) { [weak self] (result: Result<Array<ActivitiesResponse>, ErrorEncuentro>, header: Dictionary<String, Any>?) in
             self?.presenter?.responseOffice(result: result)
         }
     }

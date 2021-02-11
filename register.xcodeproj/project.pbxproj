@@ -59,6 +59,8 @@
 		D030D7EC25D1CB4D00DCF03D /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D030D7C925D1CB4C00DCF03D /* Roboto-Thin.ttf */; };
 		D030D7ED25D1CB4D00DCF03D /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D030D7CA25D1CB4C00DCF03D /* Roboto-Black.ttf */; };
 		D030D7EE25D1CB4D00DCF03D /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D030D7CB25D1CB4D00DCF03D /* Colors.xcassets */; };
+		D062EE7A25D4708D007247B2 /* ActivitiesCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D062EE7825D4708D007247B2 /* ActivitiesCardCollectionViewCell.swift */; };
+		D062EE7B25D4708D007247B2 /* ActivitiesCardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D062EE7925D4708D007247B2 /* ActivitiesCardCollectionViewCell.xib */; };
 		D084365B25D32C7600655142 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D084365A25D32C7600655142 /* RequestManager.swift */; };
 		D084365E25D32C9C00655142 /* ErrorEncuentro.swift in Sources */ = {isa = PBXBuildFile; fileRef = D084365D25D32C9C00655142 /* ErrorEncuentro.swift */; };
 		D084366125D32CCC00655142 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D084366025D32CCC00655142 /* BaseRouter.swift */; };
@@ -154,6 +156,8 @@
 		D030D7C925D1CB4C00DCF03D /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		D030D7CA25D1CB4C00DCF03D /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		D030D7CB25D1CB4D00DCF03D /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		D062EE7825D4708D007247B2 /* ActivitiesCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		D062EE7925D4708D007247B2 /* ActivitiesCardCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivitiesCardCollectionViewCell.xib; sourceTree = "<group>"; };
 		D084365A25D32C7600655142 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		D084365D25D32C9C00655142 /* ErrorEncuentro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorEncuentro.swift; sourceTree = "<group>"; };
 		D084366025D32CCC00655142 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
@@ -264,6 +268,7 @@
 		D030D78C25D1CA0400DCF03D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D062EE7225D47025007247B2 /* Cell */,
 				D0F453FF25D1CE1900B84EAC /* register.storyboard */,
 				D030D78D25D1CA0400DCF03D /* register_FrameworkView.swift */,
 			);
@@ -379,6 +384,15 @@
 				D030D7CA25D1CB4C00DCF03D /* Roboto-Black.ttf */,
 			);
 			path = Roboto;
+			sourceTree = "<group>";
+		};
+		D062EE7225D47025007247B2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D062EE7825D4708D007247B2 /* ActivitiesCardCollectionViewCell.swift */,
+				D062EE7925D4708D007247B2 /* ActivitiesCardCollectionViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		D084366625D3307D00655142 /* Router */ = {
@@ -542,6 +556,7 @@
 				D030D7DB25D1CB4D00DCF03D /* OFL.txt in Resources */,
 				D030D7EC25D1CB4D00DCF03D /* Roboto-Thin.ttf in Resources */,
 				D0F4540025D1CE1900B84EAC /* register.storyboard in Resources */,
+				D062EE7B25D4708D007247B2 /* ActivitiesCardCollectionViewCell.xib in Resources */,
 				D030D7E425D1CB4D00DCF03D /* Roboto-MediumItalic.ttf in Resources */,
 				D030D7E325D1CB4D00DCF03D /* Roboto-Regular.ttf in Resources */,
 				D030D7D025D1CB4D00DCF03D /* Montserrat-Light.ttf in Resources */,
@@ -665,6 +680,7 @@
 				D030D7A425D1CAF500DCF03D /* Extension.swift in Sources */,
 				D0F4540525D1D5C200B84EAC /* DatePickerTextField.swift in Sources */,
 				D084366425D32DBB00655142 /* API.swift in Sources */,
+				D062EE7A25D4708D007247B2 /* ActivitiesCardCollectionViewCell.swift in Sources */,
 				D0F4540D25D1DB9F00B84EAC /* BaseViewController.swift in Sources */,
 				D084366125D32CCC00655142 /* BaseRouter.swift in Sources */,
 				D030D79225D1CA0400DCF03D /* register_FrameworkPresenter.swift in Sources */,

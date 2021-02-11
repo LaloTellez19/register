@@ -13,9 +13,10 @@ protocol register_FrameworkViewProtocol: class {
     /**
     * Add here your methods for communication PRESENTER -> VIEW
     */
-    func showOffice(offices: Array<AppointmentsResponse>)
+    func showOffice(offices: Array<ActivitiesResponse>)
     func showError(error: String)
     func showClergy(clergy: Array<ClergyResponse>)
+    func showRegisterResponse(response: RegisterPriestResponse)
 }
 
 protocol register_FrameworkWireFrameProtocol: class {
@@ -34,14 +35,16 @@ protocol register_FrameworkPresenterProtocol: class {
     */
     func getOffice()
     func getClergy()
+    func postRegisterPriest(request: RegisterPriestRequest)
 }
 
 protocol register_FrameworkInteractorOutputProtocol: class {
     /**
     * Add here your methods for communication INTERACTOR -> PRESENTER
     */
-    func responseOffice(result: Result<Array<AppointmentsResponse>,ErrorEncuentro>)
+    func responseOffice(result: Result<Array<ActivitiesResponse>,ErrorEncuentro>)
     func respondeClergy(result: Result<Array<ClergyResponse>,ErrorEncuentro>)
+    func respondeRegister(result: Result<RegisterPriestResponse,ErrorEncuentro>)
 }
 
 protocol register_FrameworkInteractorInputProtocol: class
@@ -52,4 +55,5 @@ protocol register_FrameworkInteractorInputProtocol: class
     */
     func requestOffice()
     func requestClergy()
+    func postRegisterPriest(request: RegisterPriestRequest)
 }

@@ -9,6 +9,19 @@
 import Foundation
 
 class register_FrameworkPresenter: register_FrameworkPresenterProtocol, register_FrameworkInteractorOutputProtocol {
+    func postRegisterPriest(request: RegisterPriestRequest) {
+        interactor?.postRegisterPriest(request: request)
+    }
+    
+    func respondeRegister(result: Result<RegisterPriestResponse, ErrorEncuentro>) {
+        switch result {
+        case .success(let response):
+            view?.showRegisterResponse(response: response)
+        case .failure(let error):
+        view?.showError(error: error.errorDescription)
+        }
+    }
+    
     func respondeClergy(result: Result<Array<ClergyResponse>, ErrorEncuentro>) {
         switch result {
         case .success(let response):
@@ -26,7 +39,7 @@ class register_FrameworkPresenter: register_FrameworkPresenterProtocol, register
         interactor?.requestOffice()
     }
     
-    func responseOffice(result: Result<Array<AppointmentsResponse>, ErrorEncuentro>) {
+    func responseOffice(result: Result<Array<ActivitiesResponse>, ErrorEncuentro>) {
         switch result {
         case .success(let response):
             view?.showOffice(offices: response)

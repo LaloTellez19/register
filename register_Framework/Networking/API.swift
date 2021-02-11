@@ -21,17 +21,23 @@ struct API {
         #endif
         
         struct EndPoint {
-            static let appointmentsCatalog = "/catalogs/appointments"
             static let clergyCatalog = "/catalogs/clergy"
-        }
-        
-        static func appointmentsCatalog() -> String {
-            return host + version + EndPoint.appointmentsCatalog
+            static let activitiesCatalog = "/catalogs/activities"
+            static let registerPost = "/priests"
         }
         
         static func clergyCatalog() -> String {
             return host + version + EndPoint.clergyCatalog
         }
+        
+        static func appointmentsCatalog() -> String {
+            return host + version + EndPoint.activitiesCatalog
+        }
+        
+        static func registerPost() -> String {
+            return host + version + EndPoint.registerPost
+        }
+        
     }
 
 }

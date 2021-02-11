@@ -8,39 +8,62 @@
 import Foundation
 import Alamofire
 
-struct AppointmentsResponse: Codable
-{
+struct ClergyResponse: Codable {
     var id: Int
-    var tag: String
+    var name: String
     var description: String
 }
 
-struct ClergyResponse: Codable {
+struct ActivitiesResponse: Codable
+{
     var id: Int
-    var tag: String
+    var name: String
     var description: String
+}
+
+struct RegisterPriestRequest: Codable {
+    var userId: Int
+    var name: String
+    var fatherSurname: String
+    var motherSurname: String
+    var description: String
+    var birthDate: String
+    var ordinationDate: String
+    var email: String
+    var clergy: String
+    var activity: Array<Int>
+    var channelStream: String
+}
+
+struct RegisterPriestResponse: Codable {
+    var status: String
 }
 
 enum RegisterRouter: BaseRouter {
 
-    case appointments
+    case activities
     case clergy
+    case register(request: RegisterPriestRequest)
     
     var method: HTTPMethod {
         switch self {
-        case .appointments:
+        case .activities:
             return .get
         case .clergy:
             return .get
+        case .register:
+            return .post
         }
     }
     
     var path: String {
         switch self {
-        case .appointments:
+        case .activities:
             return API.URLProvider.appointmentsCatalog()
         case .clergy:
             return API.URLProvider.clergyCatalog()
+        case .register:
+            return API.URLProvider.registerPost()
         }
     }
     
@@ -54,11 +77,16 @@ enum RegisterRouter: BaseRouter {
     
     var body: Any? {
         switch self {
-        case .appointments:
+        case .activities:
             return nil
         case .clergy:
             return nil
+        case .register(let request):
+            return request
         }
+        
     }
     
 }
+
+
