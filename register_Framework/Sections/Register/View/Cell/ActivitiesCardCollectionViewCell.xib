@@ -51,11 +51,6 @@
                             <constraint firstItem="whe-EB-DFe" firstAttribute="leading" secondItem="JmA-ji-ABP" secondAttribute="trailing" constant="10" id="tOD-MD-8mC"/>
                             <constraint firstAttribute="trailing" secondItem="whe-EB-DFe" secondAttribute="trailing" constant="6" id="yPt-nh-LHj"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="radius">
-                                <real key="value" value="10"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
             </view>

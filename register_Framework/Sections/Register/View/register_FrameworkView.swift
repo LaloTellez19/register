@@ -101,21 +101,17 @@ class register_FrameworkViewController: UIViewController, register_FrameworkView
         userId = 1
         let activitiesArray = [1,2,3,4,5]
         
-        if let name = nameTextField.text, name.isEmpty,
-           let firstLastName = firstLastNameTextField.text, firstLastName.isEmpty,
-           let secondLastName = secondLastNameTextField.text, secondLastName.isEmpty,
-           let description = descriptionTextField.text, description.isEmpty,
-           let birthDate = birthdayPicker.text, birthDate.isEmpty,
-           let ordinationDate = orditionPicker.text, ordinationDate.isEmpty,
-           let email = emailTextField.text, email.isEmpty,
-           let office = officePicker.text, office.isEmpty,
-           let activities = activitesPicker.text, activities.isEmpty,
-           let url = urlTextField.text, url.isEmpty
+        if let name = nameTextField.text, !name.isEmpty,
+           let firstLastName = firstLastNameTextField.text, !firstLastName.isEmpty,
+           let secondLastName = secondLastNameTextField.text, !secondLastName.isEmpty,
+           let description = descriptionTextField.text, !description.isEmpty,
+           let birthDate = birthdayPicker.text, !birthDate.isEmpty,
+           let ordinationDate = orditionPicker.text, !ordinationDate.isEmpty,
+           let email = emailTextField.text, !email.isEmpty,
+           let office = officePicker.text, !office.isEmpty,
+           let activities = activitesPicker.text, !activities.isEmpty,
+           let url = urlTextField.text, !url.isEmpty
         {
-            let alert = UIAlertController(title: "Campos vacios", message: "Uno o varios campos vacios", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Intenta de nuevo", style: .default, handler: nil))
-            self.present(alert, animated: true)
-        }else{
             var birthDate: Date!
             var birthDateFormat: String!
             if birthdayPicker.selectedDate != Date(){
@@ -138,16 +134,25 @@ class register_FrameworkViewController: UIViewController, register_FrameworkView
             let responseRegister: RegisterPriestRequest = RegisterPriestRequest(userId: userId, name: nameTextField.text ?? "", fatherSurname: firstLastNameTextField.text ?? "", motherSurname: secondLastNameTextField.text ?? "", description: descriptionTextField.text ?? "", birthDate: birthDateFormat, ordinationDate: ordinationDateFormat, email: emailTextField.text ?? "", clergy: officePicker.text ?? "" , activity: activitiesArray, channelStream: urlTextField.text ?? "")
             
             presenter?.postRegisterPriest(request: responseRegister)
+        }else{
+            let alert = UIAlertController(title: "Campos vacios", message: "Uno o varios campos vacios", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Intenta de nuevo", style: .default, handler: nil))
+            self.present(alert, animated: true)
+            
         }
         
-      
+        
     }
     
     func showRegisterResponse(response: RegisterPriestResponse) {
         let responseStatus =  response.status
         if responseStatus == "ok"{
             let alert = UIAlertController(title: "App Encuentro", message: "Se guardaron sus datos correctamente", preferredStyle: .alert)
-            let accept = UIAlertAction(title: "Aceptar", style: .default)
+            let accept = UIAlertAction(title: "Aceptar", style: .default, handler: {
+                [weak self]
+                _ in
+                self?.navigationController?.popViewController(animated: true)
+            })
             alert.addAction(accept)
             present(alert, animated: true)
         }else{
