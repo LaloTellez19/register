@@ -13,7 +13,14 @@ import IQKeyboardManagerSwift
 class register_FrameworkViewController: UIViewController, register_FrameworkViewProtocol {
     
     //MARK: - IBOutlets
+    @IBOutlet weak var lastNameRequired: UILabel!
+    @IBOutlet weak var descriptionRequired: UILabel!
+    @IBOutlet weak var dateRequired: UILabel!
+    @IBOutlet weak var pickerRequired: UILabel!
+    @IBOutlet weak var emailRequired: UILabel!
+    @IBOutlet weak var urlRequired: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var nameRequired: UILabel!
     @IBOutlet weak var firstLastNameTextField: UITextField!
     @IBOutlet weak var secondLastNameTextField: UITextField!
     @IBOutlet weak var activitiesColletionView: UICollectionView!
@@ -40,7 +47,6 @@ class register_FrameworkViewController: UIViewController, register_FrameworkView
         
         alert.addAction(accept)
         alert.addAction(cancel)
-        
         present(alert, animated: true)
     }
     
@@ -112,29 +118,72 @@ class register_FrameworkViewController: UIViewController, register_FrameworkView
            let activities = activitesPicker.text, !activities.isEmpty,
            let url = urlTextField.text, !url.isEmpty
         {
-            var birthDate: Date!
-            var birthDateFormat: String!
-            if birthdayPicker.selectedDate != Date(){
-                birthDate = birthdayPicker.selectedDate
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "dd/MM/yyyy"
-                let dateString = dateFormatter.string(from: birthDate)
-                birthDateFormat = dateString
+                print(email.isValidEmail())
+                var birthDate: Date!
+                var birthDateFormat: String!
+                if birthdayPicker.selectedDate != Date(){
+                    birthDate = birthdayPicker.selectedDate
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "dd/MM/yyyy"
+                    let dateString = dateFormatter.string(from: birthDate)
+                    birthDateFormat = dateString
+                }
+                
+                var ordinationDate: Date!
+                var ordinationDateFormat: String!
+                if orditionPicker.selectedDate != Date(){
+                    ordinationDate = orditionPicker.selectedDate
+                    let ordinationFormatter = DateFormatter()
+                    ordinationFormatter.dateFormat = "dd/MM/yyyy"
+                    let ordinationString = ordinationFormatter.string(from: ordinationDate)
+                    ordinationDateFormat = ordinationString
+                }
+                let responseRegister: RegisterPriestRequest = RegisterPriestRequest(userId: userId, name: nameTextField.text ?? "", fatherSurname: firstLastNameTextField.text ?? "", motherSurname: secondLastNameTextField.text ?? "", description: descriptionTextField.text ?? "", birthDate: birthDateFormat, ordinationDate: ordinationDateFormat, email: emailTextField.text ?? "", clergy: officePicker.text ?? "" , activity: activitiesArray, channelStream: urlTextField.text ?? "")
+                
+                presenter?.postRegisterPriest(request: responseRegister)
+        }
+        else{
+            if let name = nameTextField.text, name.isEmpty{
+                nameRequired.isHidden = false
+            }
+            if let firstLastName = firstLastNameTextField.text, firstLastName.isEmpty{
+                    lastNameRequired.isHidden = false
+               
+            }
+            if let secondLastName = secondLastNameTextField.text, secondLastName.isEmpty{
+                    lastNameRequired.isHidden = false
+               
+            }
+            if let description = descriptionTextField.text, description.isEmpty{
+                    descriptionRequired.isHidden = false
+               
+            }
+            if let email = emailTextField.text, email.isEmpty{
+                    emailRequired.isHidden = false
+               
+            }
+            if let birthDate = birthdayPicker.text, birthDate.isEmpty{
+                    dateRequired.isHidden = false
+               
+            }
+            if let ordinationDate = orditionPicker.text, ordinationDate.isEmpty{
+                    dateRequired.isHidden = false
+               
             }
             
-            var ordinationDate: Date!
-            var ordinationDateFormat: String!
-            if orditionPicker.selectedDate != Date(){
-                ordinationDate = orditionPicker.selectedDate
-                let ordinationFormatter = DateFormatter()
-                ordinationFormatter.dateFormat = "dd/MM/yyyy"
-                let ordinationString = ordinationFormatter.string(from: ordinationDate)
-                ordinationDateFormat = ordinationString
+            if let office = officePicker.text, office.isEmpty{
+                    pickerRequired.isHidden = false
+               
             }
-            let responseRegister: RegisterPriestRequest = RegisterPriestRequest(userId: userId, name: nameTextField.text ?? "", fatherSurname: firstLastNameTextField.text ?? "", motherSurname: secondLastNameTextField.text ?? "", description: descriptionTextField.text ?? "", birthDate: birthDateFormat, ordinationDate: ordinationDateFormat, email: emailTextField.text ?? "", clergy: officePicker.text ?? "" , activity: activitiesArray, channelStream: urlTextField.text ?? "")
+            if let activities = activitesPicker.text, activities.isEmpty{
+                    pickerRequired.isHidden = false
+               
+            }
+            if let url = urlTextField.text, url.isEmpty{
+                    urlRequired.isHidden = false
+               
+            }
             
-            presenter?.postRegisterPriest(request: responseRegister)
-        }else{
             let alert = UIAlertController(title: "Campos vacios", message: "Uno o varios campos vacios", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Intenta de nuevo", style: .default, handler: nil))
             self.present(alert, animated: true)
