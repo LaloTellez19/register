@@ -23,6 +23,7 @@ class PickerViewTextField: UITextField {
     let pickerView = UIPickerView()
     var pickOptions: [String] = []
     var closure: ((_ index: Int) -> Void)? = {index in }
+    var didSelectRow: ((_ index: Int) -> Void)? = {index in }
     var didBeginEditing: (() -> Void)? = {}
     var didEndEditing: (() -> Void)? = {}
     var closureOnChange = false
@@ -79,12 +80,14 @@ extension PickerViewTextField: UIPickerViewDataSource, UIPickerViewDelegate {
         if closureOnChange {
             closure?(row)
         }
+        print("pirata 2")
         return self.pickOptions[row]
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.text = (self.text?.isEmpty ?? true) ? nil : self.pickOptions[row]
-        closure?(row)
+        didSelectRow?(row)
     }
     
 //    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {

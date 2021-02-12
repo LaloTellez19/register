@@ -60,7 +60,7 @@ class register_FrameworkViewController: UIViewController, register_FrameworkView
     
     //MARK:- Local variables
     var presenter: register_FrameworkPresenterProtocol?
-    
+    var activitiesArray: Array<String> = Array()
     
     //MARK:- Life cycle
     override func viewDidLoad() {
@@ -94,7 +94,32 @@ class register_FrameworkViewController: UIViewController, register_FrameworkView
     
     func showOffice(offices: Array<ActivitiesResponse>) {
         activitesPicker.pickOptions = offices.map({$0.name})
+        activitesPicker.didSelectRow = {index in
+            let activitySelected = self.activitesPicker.pickOptions[index]
+            if self.activitiesArray.contains(activitySelected){
+                let alert = UIAlertController(title: "Actividad repetida", message: "La actividad ya esta registrada", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            }else{
+                self.activitiesArray.append(activitySelected)
+            }
+            
+        }
+        activitesPicker.addRightLeftOnKeyboardWithTarget(self,leftButtonTitle: "Cerrar", rightButtonTitle: "Agregar", leftButtonAction: #selector(closePicker), rightButtonAction: #selector(addActivity))
         activitesPicker.initialize()
+    }
+    
+    //funciones para picker
+    @objc func closePicker() {
+        print("CLOSE")
+        activitesPicker.resignFirstResponder()
+    }
+    
+    @objc func addActivity() {
+        print("ADD")
+        activitesPicker.resignFirstResponder()
+        activitiesColletionView.isHidden = false
+        activitiesColletionView.reloadData()
     }
     
     func showError(error: String) {
@@ -103,9 +128,8 @@ class register_FrameworkViewController: UIViewController, register_FrameworkView
     
     private func updateData()
     {
-        var userId: Int
-        userId = 1
-        let activitiesArray = [1,2,3,4,5]
+        let userId = 1
+        let activitiesTempo = [1,2,3,4,5]
         
         if let name = nameTextField.text, !name.isEmpty,
            let firstLastName = firstLastNameTextField.text, !firstLastName.isEmpty,
@@ -118,70 +142,70 @@ class register_FrameworkViewController: UIViewController, register_FrameworkView
            let activities = activitesPicker.text, !activities.isEmpty,
            let url = urlTextField.text, !url.isEmpty
         {
-                print(email.isValidEmail())
-                var birthDate: Date!
-                var birthDateFormat: String!
-                if birthdayPicker.selectedDate != Date(){
-                    birthDate = birthdayPicker.selectedDate
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "dd/MM/yyyy"
-                    let dateString = dateFormatter.string(from: birthDate)
-                    birthDateFormat = dateString
-                }
-                
-                var ordinationDate: Date!
-                var ordinationDateFormat: String!
-                if orditionPicker.selectedDate != Date(){
-                    ordinationDate = orditionPicker.selectedDate
-                    let ordinationFormatter = DateFormatter()
-                    ordinationFormatter.dateFormat = "dd/MM/yyyy"
-                    let ordinationString = ordinationFormatter.string(from: ordinationDate)
-                    ordinationDateFormat = ordinationString
-                }
-                let responseRegister: RegisterPriestRequest = RegisterPriestRequest(userId: userId, name: nameTextField.text ?? "", fatherSurname: firstLastNameTextField.text ?? "", motherSurname: secondLastNameTextField.text ?? "", description: descriptionTextField.text ?? "", birthDate: birthDateFormat, ordinationDate: ordinationDateFormat, email: emailTextField.text ?? "", clergy: officePicker.text ?? "" , activity: activitiesArray, channelStream: urlTextField.text ?? "")
-                
-                presenter?.postRegisterPriest(request: responseRegister)
+            print(email.isValidEmail())
+            var birthDate: Date!
+            var birthDateFormat: String!
+            if birthdayPicker.selectedDate != Date(){
+                birthDate = birthdayPicker.selectedDate
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd/MM/yyyy"
+                let dateString = dateFormatter.string(from: birthDate)
+                birthDateFormat = dateString
+            }
+            
+            var ordinationDate: Date!
+            var ordinationDateFormat: String!
+            if orditionPicker.selectedDate != Date(){
+                ordinationDate = orditionPicker.selectedDate
+                let ordinationFormatter = DateFormatter()
+                ordinationFormatter.dateFormat = "dd/MM/yyyy"
+                let ordinationString = ordinationFormatter.string(from: ordinationDate)
+                ordinationDateFormat = ordinationString
+            }
+            let responseRegister: RegisterPriestRequest = RegisterPriestRequest(userId: userId, name: nameTextField.text ?? "", fatherSurname: firstLastNameTextField.text ?? "", motherSurname: secondLastNameTextField.text ?? "", description: descriptionTextField.text ?? "", birthDate: birthDateFormat, ordinationDate: ordinationDateFormat, email: emailTextField.text ?? "", clergy: officePicker.text ?? "" , activity: activitiesTempo, channelStream: urlTextField.text ?? "")
+            
+            presenter?.postRegisterPriest(request: responseRegister)
         }
         else{
             if let name = nameTextField.text, name.isEmpty{
                 nameRequired.isHidden = false
             }
             if let firstLastName = firstLastNameTextField.text, firstLastName.isEmpty{
-                    lastNameRequired.isHidden = false
-               
+                lastNameRequired.isHidden = false
+                
             }
             if let secondLastName = secondLastNameTextField.text, secondLastName.isEmpty{
-                    lastNameRequired.isHidden = false
-               
+                lastNameRequired.isHidden = false
+                
             }
             if let description = descriptionTextField.text, description.isEmpty{
-                    descriptionRequired.isHidden = false
-               
+                descriptionRequired.isHidden = false
+                
             }
             if let email = emailTextField.text, email.isEmpty{
-                    emailRequired.isHidden = false
-               
+                emailRequired.isHidden = false
+                
             }
             if let birthDate = birthdayPicker.text, birthDate.isEmpty{
-                    dateRequired.isHidden = false
-               
+                dateRequired.isHidden = false
+                
             }
             if let ordinationDate = orditionPicker.text, ordinationDate.isEmpty{
-                    dateRequired.isHidden = false
-               
+                dateRequired.isHidden = false
+                
             }
             
             if let office = officePicker.text, office.isEmpty{
-                    pickerRequired.isHidden = false
-               
+                pickerRequired.isHidden = false
+                
             }
             if let activities = activitesPicker.text, activities.isEmpty{
-                    pickerRequired.isHidden = false
-               
+                pickerRequired.isHidden = false
+                
             }
             if let url = urlTextField.text, url.isEmpty{
-                    urlRequired.isHidden = false
-               
+                urlRequired.isHidden = false
+                
             }
             
             let alert = UIAlertController(title: "Campos vacios", message: "Uno o varios campos vacios", preferredStyle: .alert)
@@ -217,12 +241,24 @@ class register_FrameworkViewController: UIViewController, register_FrameworkView
 
 extension register_FrameworkViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return activitiesArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ActivitiesCardCollectionViewCell.reuseIdentifier, for: indexPath)
+        let activity = activitiesArray[indexPath.item]
+        (cell as? ActivitiesCardCollectionViewCell)?.delegate = self
+        (cell as? ActivitiesCardCollectionViewCell)?.activitiesNameLabel.text = activity
         return cell
+    }
+    
+    
+}
+
+extension register_FrameworkViewController: ActivitiesCardDelegate{
+    func deleteActivity(index: IndexPath) {
+        activitiesArray.remove(at: index.item)
+        activitiesColletionView.reloadData()
     }
     
     

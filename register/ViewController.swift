@@ -10,9 +10,13 @@ import register_Framework
 
 class ViewController: UIViewController {
 
+    //MARK: - IBAction
     @IBAction func nextButton(_ sender: Any) {
         register_FrameworkWireFrame.presentregister_FrameworkModule(fromView: self)
+        
     }
+    
+    //MARK: - life clyce
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
